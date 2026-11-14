@@ -1,1 +1,14 @@
-{"claim_id": "claim_005", "member_id": "M100", "payer": "BlueSky Health", "cpt_code": "90834", "session_minutes": 45, "diagnosis_code": "F41.1", "telehealth": false, "modifiers": [], "session_note": "Client was home sick, so we held the session by video instead of in the office. Reviewed coping skills."}
+{
+  "claim_id": "claim_005",
+  "member_id": "M100",
+  "payer": "BlueSky Health",
+  "cpt_code": "90834",
+  "session_minutes": 45,
+  "diagnosis_code": "F41.1",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 5,
+  "prior_auth_number": null,
+  "session_note": "Client was home sick, so we held the session by video instead of in the office. Reviewed coping skills."
+}

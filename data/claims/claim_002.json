@@ -1,1 +1,13 @@
-{"claim_id": "claim_002", "member_id": "M101", "payer": "BlueSky Health", "cpt_code": "90837", "session_minutes": 40, "diagnosis_code": "F32.1", "telehealth": false, "modifiers": []}
+{
+  "claim_id": "claim_002",
+  "member_id": "M101",
+  "payer": "BlueSky Health",
+  "cpt_code": "90837",
+  "session_minutes": 40,
+  "diagnosis_code": "F32.1",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 7,
+  "prior_auth_number": null
+}
