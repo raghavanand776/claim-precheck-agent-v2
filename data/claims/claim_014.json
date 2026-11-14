@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_014",
+  "member_id": "M107",
+  "payer": "Evergreen Mutual",
+  "cpt_code": "90837",
+  "session_minutes": 55,
+  "diagnosis_code": "F43.10",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 4,
+  "prior_auth_number": null,
+  "session_note": "In-office session, 10:00 to 10:55 am. Extended session for exposure exercise."
+}

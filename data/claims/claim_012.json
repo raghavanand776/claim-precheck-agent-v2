@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_012",
+  "member_id": "M107",
+  "payer": "Evergreen Mutual",
+  "cpt_code": "90834",
+  "session_minutes": 45,
+  "diagnosis_code": "F43.10",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 3,
+  "prior_auth_number": null,
+  "session_note": "In-office session, 2:00 to 2:45 pm. Continued trauma-focused work."
+}

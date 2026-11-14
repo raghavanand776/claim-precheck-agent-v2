@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_013",
+  "member_id": "M102",
+  "payer": "BlueSky Health",
+  "cpt_code": "90834",
+  "session_minutes": 45,
+  "diagnosis_code": "F41.1",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 22,
+  "prior_auth_number": "BSH-PA-55821",
+  "session_note": "In-office session. Reviewed relapse-prevention plan."
+}

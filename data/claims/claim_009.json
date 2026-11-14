@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_009",
+  "member_id": "M100",
+  "payer": "BlueSky Health",
+  "cpt_code": "90834",
+  "session_minutes": 45,
+  "diagnosis_code": "F43.23",
+  "telehealth": true,
+  "modifiers": ["95"],
+  "place_of_service": "02",
+  "sessions_this_year": 9,
+  "prior_auth_number": null,
+  "session_note": "Video session. Client joined from home. Reviewed sleep log and adjustment stressors."
+}

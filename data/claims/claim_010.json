@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_010",
+  "member_id": "M106",
+  "payer": "Cascade Care",
+  "cpt_code": "90834",
+  "session_minutes": 50,
+  "diagnosis_code": "F33.1",
+  "telehealth": false,
+  "modifiers": [],
+  "place_of_service": "11",
+  "sessions_this_year": 14,
+  "prior_auth_number": null,
+  "session_note": "In-office session 14 this year. Authorization for continued sessions was approved last month in the portal; number not yet added to billing."
+}

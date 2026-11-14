@@ -1,0 +1,14 @@
+{
+  "claim_id": "claim_011",
+  "member_id": "M105",
+  "payer": "Evergreen Mutual",
+  "cpt_code": "90834",
+  "session_minutes": 40,
+  "diagnosis_code": "F41.1",
+  "telehealth": true,
+  "modifiers": ["GT"],
+  "place_of_service": "02",
+  "sessions_this_year": 6,
+  "prior_auth_number": null,
+  "session_note": "Client's internet was down, so we held the session by phone, audio only. Discussed panic symptoms."
+}
