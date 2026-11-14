@@ -86,7 +86,10 @@ VALIDATE_CODES = {
 
 CHECK_ELIGIBILITY = {
     "name": "check_eligibility",
-    "description": "Check whether a member's insurance coverage is active.",
+       "description": (
+        "Check whether a member's insurance coverage is active. Needs the member_id "
+        "from the claim (e.g. 'M105'), not the claim ID, so call read_claim first."
+    ),
     "input_schema": {
         "type": "object",
         "properties": {"member_id": {"type": "string"}},
