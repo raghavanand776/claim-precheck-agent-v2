@@ -166,7 +166,7 @@ Payer policy:
 - Only cite section IDs that search_payer_policy returned in this conversation. If no retrieved section covers a question, do not guess a rule; say the policy did not cover it.
 
 Every reason must say exactly what to change: the correct code, modifier, place of service, or missing number.
-Verdict rules: coverage not active, or the payer's policy says the service is not covered = LIKELY DENIAL. Any other problem = FIX NEEDED. No problems = READY.
+Verdict rules: LIKELY DENIAL only when the claim can't be fixed before submission: coverage not active, or the payer's policy says the service is not covered. A problem that can be fixed before submitting (a wrong code, modifier or place of service, or a missing number such as a prior authorization) = FIX NEEDED, even if the policy says such claims are denied. No problems = READY.
 When done, reply with only JSON: {"verdict": "...", "reasons": ["..."]}"""
 
 SYSTEM = {"v1": SYSTEM_V1, "v2": SYSTEM_V2}
