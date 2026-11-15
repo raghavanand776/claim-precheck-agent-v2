@@ -1,0 +1,117 @@
+
+claim_001
+    Claude calls read_claim({'claim_id': 'claim_001'})
+    Claude calls validate_codes({'claim_id': 'claim_001'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+  Verdict: READY  (correct)
+
+claim_002
+    Claude calls read_claim({'claim_id': 'claim_002'})
+    Claude calls validate_codes({'claim_id': 'claim_002'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M101'})
+  Verdict: FIX NEEDED  (correct)
+    - Change CPT code from 90837 to 90834; session is 40 minutes but 90837 requires 53+ minutes (90834 covers 38-52 minutes)
+
+claim_003
+    Claude calls read_claim({'claim_id': 'claim_003'})
+    Claude calls validate_codes({'claim_id': 'claim_003'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+  Verdict: FIX NEEDED  (correct)
+    - Add modifier 95 to CPT 90834 – BlueSky Health requires modifier 95 for telehealth/video sessions
+
+claim_004
+    Claude calls read_claim({'claim_id': 'claim_004'})
+    Claude calls validate_codes({'claim_id': 'claim_004'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M104'})
+  Verdict: LIKELY DENIAL  (correct)
+    - Member M104 coverage is not active
+
+claim_005
+    Claude calls read_claim({'claim_id': 'claim_005'})
+    Claude calls validate_codes({'claim_id': 'claim_005'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+  Verdict: FIX NEEDED  (correct)
+    - Session was conducted by video per the session note, but claim shows telehealth: false. Change to telehealth: true.
+    - Add modifier 95 to the claim as required by BlueSky Health for telehealth sessions.
+
+claim_006
+    Claude calls read_claim({'claim_id': 'claim_006'})
+    Claude calls validate_codes({'claim_id': 'claim_006'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M101'})
+  Verdict: FIX NEEDED  (correct)
+    - Session lasted 25 minutes per session note but CPT code 90834 (38-52 min) is billed. Change to CPT code 90832 (16-37 min).
+
+claim_007
+    Claude calls read_claim({'claim_id': 'claim_007'})
+    Claude calls validate_codes({'claim_id': 'claim_007'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+  Verdict: READY  (correct)
+
+claim_008
+    Claude calls read_claim({'claim_id': 'claim_008'})
+    Claude calls validate_codes({'claim_id': 'claim_008'})
+    Claude calls lookup_payer_rules({'payer': 'Evergreen Mutual'})
+    Claude calls check_eligibility({'member_id': 'M105'})
+  Verdict: READY  (WRONG)
+  ! expected FIX NEEDED
+  ! reasons don't mention GT
+
+claim_009
+    Claude calls read_claim({'claim_id': 'claim_009'})
+    Claude calls validate_codes({'claim_id': 'claim_009'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+  Verdict: READY  (WRONG)
+  ! expected FIX NEEDED
+  ! reasons don't mention 10
+
+claim_010
+    Claude calls read_claim({'claim_id': 'claim_010'})
+    Claude calls validate_codes({'claim_id': 'claim_010'})
+    Claude calls lookup_payer_rules({'payer': 'Cascade Care'})
+    Claude calls check_eligibility({'member_id': 'M106'})
+  Verdict: READY  (WRONG)
+  ! expected FIX NEEDED
+  ! reasons don't mention authorization
+
+claim_011
+    Claude calls read_claim({'claim_id': 'claim_011'})
+    Claude calls validate_codes({'claim_id': 'claim_011'})
+    Claude calls lookup_payer_rules({'payer': 'Evergreen Mutual'})
+    Claude calls check_eligibility({'member_id': 'M105'})
+  Verdict: FIX NEEDED  (WRONG)
+    - Session note contradicts telehealth claim: client's internet was down and session was audio-only by phone, not video. Either remove the 'telehealth' designation and GT modifier if this should be coded as a phone/audio session, or verify the actual session delivery method with the provider.
+  ! expected LIKELY DENIAL
+
+claim_012
+    Claude calls read_claim({'claim_id': 'claim_012'})
+    Claude calls validate_codes({'claim_id': 'claim_012'})
+    Claude calls lookup_payer_rules({'payer': 'Evergreen Mutual'})
+    Claude calls check_eligibility({'member_id': 'M107'})
+  Verdict: READY  (correct)
+
+claim_013
+    Claude calls read_claim({'claim_id': 'claim_013'})
+    Claude calls validate_codes({'claim_id': 'claim_013'})
+    Claude calls lookup_payer_rules({'payer': 'BlueSky Health'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+  Verdict: READY  (correct)
+
+claim_014
+    Claude calls read_claim({'claim_id': 'claim_014'})
+    Claude calls validate_codes({'claim_id': 'claim_014'})
+    Claude calls lookup_payer_rules({'payer': 'Evergreen Mutual'})
+    Claude calls check_eligibility({'member_id': 'M107'})
+  Verdict: READY  (WRONG)
+  ! expected FIX NEEDED
+  ! reasons don't mention authorization
+
+Mode: v1
+Correct (verdict + fix): 9/14

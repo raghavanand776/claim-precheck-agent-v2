@@ -1,0 +1,128 @@
+
+claim_001
+    Claude calls read_claim({'claim_id': 'claim_001'})
+    Claude calls validate_codes({'claim_id': 'claim_001'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': '90834 procedure code session length requirements'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'prior authorization session limit requirements'})
+    Claude calls read_claim({'claim_id': 'claim_001'})
+  Verdict: READY  (correct, grounded)
+
+claim_002
+    Claude calls read_claim({'claim_id': 'claim_002'})
+    Claude calls validate_codes({'claim_id': 'claim_002'})
+    Claude calls check_eligibility({'member_id': 'M101'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': '90837 90834 procedure code session length'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'prior authorization session limits'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Change CPT code from 90837 to 90834 (40-minute session requires 90834 per BlueSky Health policy [BSH-TIME-CODES])
+
+claim_003
+    Claude calls read_claim({'claim_id': 'claim_003'})
+    Claude calls validate_codes({'claim_id': 'claim_003'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'telehealth modifier place of service video session'})
+    Claude calls read_claim({'claim_id': 'claim_003'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Add modifier 95 to this video telehealth claim. BlueSky Health policy requires modifier 95 on every video visit; claims without it are denied [BSH-TELEHEALTH]
+
+claim_004
+    Claude calls read_claim({'claim_id': 'claim_004'})
+    Claude calls validate_codes({'claim_id': 'claim_004'})
+    Claude calls check_eligibility({'member_id': 'M104'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'session limit prior authorization 90834'})
+  Verdict: LIKELY DENIAL  (correct, grounded)
+    - Member M104's insurance coverage is not active at the time of service.
+
+claim_005
+    Claude calls read_claim({'claim_id': 'claim_005'})
+    Claude calls validate_codes({'claim_id': 'claim_005'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'video telehealth modifier and place of service'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Session was delivered by video per session note but claim shows in-office (place_of_service 11, no modifiers). Change place_of_service to 10 and add modifier 95 per BlueSky Health telehealth policy [BSH-TELEHEALTH].
+
+claim_006
+    Claude calls read_claim({'claim_id': 'claim_006'})
+    Claude calls validate_codes({'claim_id': 'claim_006'})
+    Claude calls check_eligibility({'member_id': 'M101'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'session length and billing for shortened or ended early sessions'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': '90834 procedure code billing rules'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'session limits per year psychotherapy'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Change CPT code from 90834 to 90832: the session note documents 25 minutes of actual face-to-face time, which falls in the 16-37 minute range for 90832, not the 38-52 minute range for 90834 [BSH-TIME-CODES]
+
+claim_007
+    Claude calls read_claim({'claim_id': 'claim_007'})
+    Claude calls validate_codes({'claim_id': 'claim_007'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'rules for 90834 procedure code session length'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'prior authorization session limits'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'in-office place of service requirements'})
+  Verdict: READY  (correct, grounded)
+
+claim_008
+    Claude calls read_claim({'claim_id': 'claim_008'})
+    Claude calls validate_codes({'claim_id': 'claim_008'})
+    Claude calls check_eligibility({'member_id': 'M105'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'video telehealth modifier 95 and place of service 02'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'prior authorization requirement and session limits'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': '90834 psychotherapy 45 minutes'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Replace modifier 95 with modifier GT. Evergreen Mutual does not accept modifier 95 for video telehealth; modifier GT is required. Video visits billed with modifier 95 are denied [EGM-TELEHEALTH].
+
+claim_009
+    Claude calls read_claim({'claim_id': 'claim_009'})
+    Claude calls validate_codes({'claim_id': 'claim_009'})
+    Claude calls check_eligibility({'member_id': 'M100'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'video telehealth modifier 95 place of service'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'prior authorization session limit 90834'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Place of service should be 10 (patient's home) for video visits where the patient joins from home, not 02 [BSH-TELEHEALTH]
+
+claim_010
+    Claude calls read_claim({'claim_id': 'claim_010'})
+    Claude calls validate_codes({'claim_id': 'claim_010'})
+    Claude calls check_eligibility({'member_id': 'M106'})
+    Claude calls search_payer_policy({'payer': 'Cascade Care', 'query': 'prior authorization session limit'})
+    Claude calls search_payer_policy({'payer': 'Cascade Care', 'query': '90834 procedure code'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Add the prior authorization number to the claim. Session 14 requires prior authorization; Cascade Care requires a prior authorization number on claims for sessions 13 and beyond [CCP-PRIOR-AUTH]
+
+claim_011
+    Claude calls read_claim({'claim_id': 'claim_011'})
+    Claude calls validate_codes({'claim_id': 'claim_011'})
+    Claude calls check_eligibility({'member_id': 'M105'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'audio-only phone session modifier place of service'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'prior authorization session limit 90834'})
+  Verdict: LIKELY DENIAL  (correct, grounded)
+    - The session was delivered as audio-only by phone (per session note), but Evergreen Mutual does not cover audio-only telephone psychotherapy sessions—they will be denied regardless of codes or modifiers billed. Either the service must be converted to video or collected as a non-covered service from the member. [EGM-AUDIO-ONLY]
+
+claim_012
+    Claude calls read_claim({'claim_id': 'claim_012'})
+    Claude calls validate_codes({'claim_id': 'claim_012'})
+    Claude calls check_eligibility({'member_id': 'M107'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'session limit prior authorization 90834'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'in-office place of service procedure code 90834'})
+  Verdict: READY  (correct, grounded)
+
+claim_013
+    Claude calls read_claim({'claim_id': 'claim_013'})
+    Claude calls validate_codes({'claim_id': 'claim_013'})
+    Claude calls check_eligibility({'member_id': 'M102'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': '90834 individual psychotherapy session limits'})
+    Claude calls search_payer_policy({'payer': 'BlueSky Health', 'query': 'prior authorization requirements'})
+  Verdict: READY  (correct, grounded)
+
+claim_014
+    Claude calls read_claim({'claim_id': 'claim_014'})
+    Claude calls validate_codes({'claim_id': 'claim_014'})
+    Claude calls check_eligibility({'member_id': 'M107'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': '90837 extended session procedure code'})
+    Claude calls search_payer_policy({'payer': 'Evergreen Mutual', 'query': 'prior authorization session limit requirements'})
+  Verdict: FIX NEEDED  (correct, grounded)
+    - Add prior authorization number to the claim. Evergreen Mutual requires a prior authorization number for every session billed as 90837; claims without it are denied [EGM-90837-AUTH].
+
+Mode: v2
+Correct (verdict + fix): 14/14
+Grounded (right citation, none invented): 14/14
