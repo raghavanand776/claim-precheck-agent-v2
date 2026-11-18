@@ -273,8 +273,14 @@ def precheck(claim_id, mode="v2", client=None, verbose=True):
         # If Claude didn't ask for a tool, it's done: read its final answer.
         if response.stop_reason != "tool_use":
             text = "".join(block.text for block in response.content if block.type == "text")
-            # Pull out the JSON between the first { and the last }.
-            result = json.loads(text[text.find("{"): text.rfind("}") + 1])
+            # Pull out the first complete JSON object in Claude's answer.
+            # Claude sometimes adds extra text or a second {...} block after
+            # its answer, so slicing from the first { to the last } can
+            # capture two JSON pieces and crash with "Extra data".
+            start = text.find("{")  # position of the first opening brace
+            # raw_decode parses one complete JSON object starting at that
+            # position and ignores whatever comes after it.
+            result, _ = json.JSONDecoder().raw_decode(text[start:])
             # Check the citations in code before returning.
             result["citations"], result["ungrounded"] = check_citations(result["reasons"], retrieved)
             return result
